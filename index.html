@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM Games</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 30px 0;
+      background: linear-gradient(135deg, #6e8efb, #a777e3);
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      font-size: 3.5rem;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      letter-spacing: 2px;
+    }
+    
+    .games-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    
+    .game-card {
+      width: 300px;
+      height: 350px;
+      background-color: white;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .game-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .game-card-img {
+      height: 60%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    .flappy-bird-img {
+      background-color: #70c5ce;
+    }
+    
+    .snake-img {
+      background-color: #4caf50;
+    }
+    
+    .game-card-content {
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .game-card h2 {
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+      color: #444;
+    }
+    
+    .game-card p {
+      color: #777;
+      margin-bottom: 15px;
+    }
+    
+    .play-btn {
+      display: inline-block;
+      padding: 8px 20px;
+      background: linear-gradient(135deg, #6e8efb, #a777e3);
+      color: white;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.2s ease;
+    }
+    
+    .play-btn:hover {
+      transform: scale(1.05);
+    }
+    
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      color: #777;
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+      .games-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .game-card {
+        width: 100%;
+        max-width: 350px;
+      }
+      
+      h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>LLM Games</h1>
+  </header>
+  
+  <main>
+    <div class="games-container">
+      <!-- Flappy Bird Card -->
+      <div class="game-card" onclick="location.href='flappy-bird/index.html';">
+        <div class="game-card-img flappy-bird-img">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="200" height="150">
+            <!-- Sky background -->
+            <rect x="0" y="0" width="200" height="150" fill="#70c5ce" opacity="0.3"/>
+            
+            <!-- Clouds -->
+            <ellipse cx="30" cy="30" rx="15" ry="10" fill="white" opacity="0.8"/>
+            <ellipse cx="45" cy="35" rx="15" ry="8" fill="white" opacity="0.8"/>
+            <ellipse cx="20" cy="35" rx="10" ry="7" fill="white" opacity="0.8"/>
+            
+            <ellipse cx="170" cy="20" rx="15" ry="10" fill="white" opacity="0.8"/>
+            <ellipse cx="185" cy="25" rx="15" ry="8" fill="white" opacity="0.8"/>
+            <ellipse cx="160" cy="25" rx="10" ry="7" fill="white" opacity="0.8"/>
+            
+            <!-- Pipes -->
+            <rect x="130" y="0" width="20" height="50" fill="#75b753" stroke="#4a752c" stroke-width="2"/>
+            <rect x="125" y="50" width="30" height="5" fill="#75b753" stroke="#4a752c" stroke-width="2"/>
+            
+            <rect x="130" y="100" width="20" height="50" fill="#75b753" stroke="#4a752c" stroke-width="2"/>
+            <rect x="125" y="95" width="30" height="5" fill="#75b753" stroke="#4a752c" stroke-width="2"/>
+            
+            <rect x="60" y="0" width="20" height="60" fill="#75b753" stroke="#4a752c" stroke-width="2"/>
+            <rect x="55" y="60" width="30" height="5" fill="#75b753" stroke="#4a752c" stroke-width="2"/>
+            
+            <rect x="60" y="110" width="20" height="40" fill="#75b753" stroke="#4a752c" stroke-width="2"/>
+            <rect x="55" y="105" width="30" height="5" fill="#75b753" stroke="#4a752c" stroke-width="2"/>
+            
+            <!-- Bird -->
+            <circle cx="90" cy="75" r="15" fill="#f8e71c"/>
+            <circle cx="98" cy="70" r="3" fill="black"/>
+            <path d="M105 75 L115 70 L105 80" fill="#f8a51c" stroke="black" stroke-width="1"/>
+            <path d="M75 65 L85 60 L90 70" fill="#f8a51c" stroke="black" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="game-card-content">
+          <h2>Flappy Bird</h2>
+          <p>Navigate through pipes by tapping to control the bird's flight.</p>
+          <a href="flappy-bird/index.html" class="play-btn">Play Now</a>
+        </div>
+      </div>
+      
+      <!-- Snake Card -->
+      <div class="game-card" onclick="location.href='snake/index.html';">
+        <div class="game-card-img snake-img">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="200" height="150">
+            <!-- Game grid background -->
+            <rect x="0" y="0" width="200" height="150" fill="#4caf50" opacity="0.3"/>
+            
+            <!-- Grid lines (faint) -->
+            <g opacity="0.2">
+              <!-- Vertical lines -->
+              <line x1="20" y1="0" x2="20" y2="150" stroke="#333" stroke-width="1"/>
+              <line x1="40" y1="0" x2="40" y2="150" stroke="#333" stroke-width="1"/>
+              <line x1="60" y1="0" x2="60" y2="150" stroke="#333" stroke-width="1"/>
+              <line x1="80" y1="0" x2="80" y2="150" stroke="#333" stroke-width="1"/>
+              <line x1="100" y1="0" x2="100" y2="150" stroke="#333" stroke-width="1"/>
+              <line x1="120" y1="0" x2="120" y2="150" stroke="#333" stroke-width="1"/>
+              <line x1="140" y1="0" x2="140" y2="150" stroke="#333" stroke-width="1"/>
+              <line x1="160" y1="0" x2="160" y2="150" stroke="#333" stroke-width="1"/>
+              <line x1="180" y1="0" x2="180" y2="150" stroke="#333" stroke-width="1"/>
+              
+              <!-- Horizontal lines -->
+              <line x1="0" y1="15" x2="200" y2="15" stroke="#333" stroke-width="1"/>
+              <line x1="0" y1="30" x2="200" y2="30" stroke="#333" stroke-width="1"/>
+              <line x1="0" y1="45" x2="200" y2="45" stroke="#333" stroke-width="1"/>
+              <line x1="0" y1="60" x2="200" y2="60" stroke="#333" stroke-width="1"/>
+              <line x1="0" y1="75" x2="200" y2="75" stroke="#333" stroke-width="1"/>
+              <line x1="0" y1="90" x2="200" y2="90" stroke="#333" stroke-width="1"/>
+              <line x1="0" y1="105" x2="200" y2="105" stroke="#333" stroke-width="1"/>
+              <line x1="0" y1="120" x2="200" y2="120" stroke="#333" stroke-width="1"/>
+              <line x1="0" y1="135" x2="200" y2="135" stroke="#333" stroke-width="1"/>
+            </g>
+            
+            <!-- Snake body segments -->
+            <rect x="60" y="75" width="20" height="15" rx="3" fill="#2e7d32" stroke="#1b5e20" stroke-width="1"/>
+            <rect x="80" y="75" width="20" height="15" rx="3" fill="#2e7d32" stroke="#1b5e20" stroke-width="1"/>
+            <rect x="100" y="75" width="20" height="15" rx="3" fill="#2e7d32" stroke="#1b5e20" stroke-width="1"/>
+            <rect x="120" y="75" width="20" height="15" rx="3" fill="#2e7d32" stroke="#1b5e20" stroke-width="1"/>
+            <rect x="140" y="75" width="20" height="15" rx="3" fill="#2e7d32" stroke="#1b5e20" stroke-width="1"/>
+            
+            <!-- Snake head -->
+            <rect x="40" y="75" width="20" height="15" rx="5" fill="#388e3c" stroke="#1b5e20" stroke-width="1"/>
+            <circle cx="45" cy="80" r="2" fill="white"/>
+            <circle cx="55" cy="80" r="2" fill="white"/>
+            
+            <!-- Food -->
+            <circle cx="160" cy="45" r="7" fill="#ff5252"/>
+          </svg>
+        </div>
+        <div class="game-card-content">
+          <h2>Snake</h2>
+          <p>Control the snake to eat food and grow without hitting the walls or yourself.</p>
+          <a href="snake/index.html" class="play-btn">Play Now</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 LLM Games. All games created with AI assistance.</p>
+  </footer>
+</body>
+</html>
